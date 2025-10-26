@@ -88,6 +88,7 @@ main {
     justify-content: center;
     background-color: #f0f0f0;
     transition: background-color 0.2s;
+    min-width: 50px;
 }
 
 .btn-icon:hover {
@@ -109,15 +110,15 @@ main {
 
 .strength-bar {
     height: 100%;
-    width: 0%;
+    width: 75%;
     border-radius: 4px;
     transition: width 0.3s, background-color 0.3s;
-    background-color: #bbb33e;
+    background-color: yellowgreen;
 }
 
 #strength-text {
     font-size: 0.85rem;
-    color: #666;
+    color: yellowgreen;
 }
 
 /* Options styles */
@@ -225,19 +226,93 @@ footer p {
 
 /* Responsive adjustments */
 @media (max-width: 480px) {
-    .container {
-        border-radius: 8px;
+    body {
+        padding: 10px;
     }
     
-    main {
-        padding: 20px 15px;
+    .container {
+        border-radius: 10px;
     }
     
     header {
-        padding: 20px 15px;
+        padding: 15px 12px;
     }
     
     header h1 {
-        font-size: 1.6rem;
+        font-size: 1.4rem;
+    }
+    
+    header p {
+        font-size: 0.8rem;
+    }
+    
+    main {
+        padding: 15px;
+    }
+    
+    .password-display {
+        margin-bottom: 15px;
+    }
+    
+    #password-output {
+        padding: 12px 10px;
+        font-size: 0.9rem;
+        min-height: 45px;
+    }
+    
+    .btn-icon {
+        padding: 0 14px;
+        min-width: 45px;
+    }
+    
+    .btn-icon svg {
+        width: 16px;
+        height: 16px;
+    }
+    
+    .option-group label {
+        font-size: 0.85rem;
+    }
+    
+    .btn-primary {
+        padding: 14px;
+        font-size: 0.95rem;
+        min-height: 45px;
+    }
+    
+    footer {
+        padding: 12px 15px;
+    }
+}
+
+/* Very small screens (iPhone SE, small Android) */
+@media (max-width: 360px) {
+    header h1 {
+        font-size: 1.3rem;
+    }
+    
+    #password-output {
+        font-size: 0.7rem;
+        padding: 8px 6px;
+    }
+    
+    .btn-icon {
+        padding: 0 12px;
+        min-width: 42px;
+    }
+    
+    .option-group label {
+        font-size: 0.8rem;
+    }
+}
+
+/* Tablet adjustments */
+@media (min-width: 768px) and (max-width: 1024px) {
+    .container {
+        max-width: 600px;
+    }
+    
+    main {
+        padding: 25px;
     }
 }

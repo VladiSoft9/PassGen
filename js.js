@@ -20,15 +20,15 @@ const NUMBER_CHARS = '0123456789'
 const SYMBOL_CHARS = '!@#$%^&*()_+[]{}|;:,.<>?'
 
 const strengthLevels = [
-    { width: '0%', text: '' },
-    { width: '25%', text: 'Weak' }, 
-    { width: '50%', text: 'Moderate' },
-    { width: '75%', text: 'Strong' },
-    { width: '100%', text: 'Very Strong' }
+    { width: '0%', text: '', barColor: 'transparent', textColor: 'black' },
+    { width: '25%', text: 'Weak', barColor: 'red', textColor: 'red' }, 
+    { width: '50%', text: 'Moderate', barColor: 'orange', textColor: 'orange' },
+    { width: '75%', text: 'Strong', barColor: 'yellowgreen', textColor: 'yellowgreen' },
+    { width: '100%', text: 'Very Strong', barColor: 'green', textColor: 'green' }
 ]
 
 function updateStrengthBar() {
-    let strength = 0
+    let strength = -1
     if (uppercaseCheckbox.checked) strength++   
     if (lowercaseCheckbox.checked) strength++
     if (numbersCheckbox.checked) strength++
@@ -37,7 +37,9 @@ function updateStrengthBar() {
 
     const level = strengthLevels[strength]
     strengthBar.style.width = level.width
+    strengthBar.style.backgroundColor = level.barColor
     strengthText.textContent = level.text
+    strengthText.style.color = level.textColor
 }
 uppercaseCheckbox.addEventListener('change', updateStrengthBar)
 lowercaseCheckbox.addEventListener('change', updateStrengthBar)
@@ -80,6 +82,10 @@ refreshBtn.addEventListener('click', e => {
     lowercaseCheckbox.checked = true
     numbersCheckbox.checked = true
     symbolsCheckbox.checked = false
+    strengthBar.style.width = '75%'
+    strengthBar.style.backgroundColor = 'yellowgreen'
+    strengthText.textContent = 'Strong'
+    strengthText.style.color = 'yellowgreen'
 })
 
 copyBtn.addEventListener('click', e => {
@@ -94,3 +100,15 @@ copyBtn.addEventListener('click', e => {
 passwordLength.addEventListener('change', e => {
     lengthValue.textContent = passwordLength.value
 })
+
+function updateOutputPlaceholder() {
+    const screenWidth = window.innerWidth
+    if (screenWidth <= 768) {
+        passwordOutput.placeholder = 'Your new password'
+    }
+    else {
+        passwordOutput.placeholder = 'Your password will appear here'
+    }}
+
+window.addEventListener('resize', updateOutputPlaceholder)
+window.addEventListener('load', updateOutputPlaceholder)
